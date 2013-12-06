@@ -1,0 +1,49 @@
+#wrapper {
+	width: 800px;
+	background-position:bottom;
+	background-repeat:no-repeat;
+	background-color:#FFFFFF;
+	margin:auto;
+	border: 1px solid #333333; 
+}
+#top_banner{
+	background-image:url('http://ccicada.rutgers.edu/images/CCICADA_Logo_v1.JPG');
+	background-repeat:no-repeat;
+	background-position: center;
+	padding-left: 180px;
+	height: 380px;
+	width: 620px
+}
+#content {
+	font-family:Arial, Helvetica, sans-serif;
+	margin: 20px;
+}
+#content table{
+	border: 1px solid black;
+}
+body {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	background-color:#C0C0C0;
+}
+#googlelogin {
+	margin-left: 275px;
+	position: absolute;
+
+}
+#rucaslogin{
+	margin-left: 480px;
+	position: absolute;
+}
+table
+{
+border-collapse:collapse;
+width: 100%;
+}
+table, td, th
+{
+border:1px solid black;
+padding:5px;
+}
+textarea{
+	width: 100%;
+}
