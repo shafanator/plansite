@@ -27,7 +27,7 @@ $extra = 'projectlist.php';
 				echo "Password verified!";
 				echo $_POST['user'];
 				echo "<br>";
-				echo $_COOKIE['user'];
+				echo $_COOKIE["user"];
 				echo "<br>";
 				echo "<a href = 'http://$host$uri/$extra'> click here to go </a>";
 			}
