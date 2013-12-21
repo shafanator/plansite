@@ -15,13 +15,8 @@
 		echo "1 record added";
 
 	} else if ($_POST['button'] == 'Add to Log') {
-	    $sql="UPDATE projects SET 
-	    user =  concat(user,' $_POST[user]'),  
-	    done =  concat(done,' $_POST[done]'), 
-	    to_do = concat(to_do,' $_POST[to_do]'), 
-	    hours_last_month = concat(hours_last_month,'$_POST[hours_last_month]'), 
-	    hours = concat(hours,'$_POST[hours]') 
-	    where project= '$_POST[project]'";
+	    $sql="INSERT INTO projects(`user`, `done`, `to_do`, hours_last_month, `hours`, `project`) values('$_POST[user]', 
+	    	'$_POST[done]','$_POST[to_do]', '$_POST[hours_last_month]', '$_POST[hours]', '$_POST[project]')";
 	    if (!mysqli_query($mysqli,$sql))
 	  	{
 	  		die('Error: ' . mysqli_error($mysqli));
@@ -40,6 +35,7 @@
 	$host  = $_SERVER['HTTP_HOST'];
 	$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 	$extra = 'projectlist.php';
+	echo "<a href = 'http://$host$uri/$extra'> click here to go </a>";
 	//header("Location: http://$host$uri/$extra");
 	//header( "Location: projectlist.php" );
 
