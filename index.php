@@ -49,7 +49,7 @@
 				<form action = "authentication.php" method="POST" style="" >
 	  			Username: <input type="text" name="user"><br>
 	  			Password: <input type="password" name="password"><br>
-	  			Create User: <input type="checkbox" name="cu"><br>
+	  			<!--Create User: <input type="checkbox" name="cu"><br>-->
 	  			<input type="submit" value="Submit">
 				</form>
 				
