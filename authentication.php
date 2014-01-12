@@ -9,7 +9,7 @@
 	<body>
 		
 		<div id = "wrapper">
-			<div style="right:0px;"><a href="logout.php" >Log Out</div>
+			<div style="right:0px;"><a href="logout.php" >Log Out</a></div>
 			<div id = "top_banner"></div>
 			<div id = "content">
 			<?php
@@ -21,7 +21,7 @@ $extra = 'projectlist.php';
 	setcookie("user", $_POST['user'], time()+60*60*24*2);//save user name for 2 days?
 	$user = $_POST['user'];
 	echo $user;
-	$mysqli = new mysqli("localhost", "root", "", "plansite");
+	global $mysqli = new mysqli("localhost", "mss302", "415", "plansite");
 	if ($mysqli->connect_errno) {
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 			exit();
@@ -43,8 +43,8 @@ $extra = 'projectlist.php';
 				echo $_POST['user'];
 				echo "<br>";
 				//echo $_COOKIE["user"];
-				echo "<br>";
-				echo "<a href = 'http://$host$uri/$extra'> click here to go </a>";
+				echo "<br><div id = \"googlelogin\">";
+				echo "<a href = 'http://$host$uri/$extra'> Click here to view current projects  </a></div>";
 				setcookie("group", $group, time()+60*60*24*2);
 			}
 			else
@@ -66,7 +66,7 @@ $extra = 'projectlist.php';
 		createUser($user, $_POST['password'], (int)$_POST['group']);
 	}
 
-	if(isset($_COOKIE["group"]) && $_COOKIE["group"] == 6)//user creator
+	if(isset($group) && $group == 6)//user creator
 	{//create USER
 		?>
 				<form action = "authentication.php" method="POST" style="" >
@@ -88,11 +88,14 @@ $extra = 'projectlist.php';
 
 
 	}
+	if(isset($_COOKIE["group"]) && $_COOKIE["group"] > 5){//
+		
+	}
 
 
 	function createUser($username, $password, $group){
 		$pass  =crypt($password);
-		$mysqli = new mysqli("localhost", "root", "", "plansite");
+		$mysqli = new mysqli("localhost", "mss302", "415", "plansite");
         if ($mysqli->connect_errno) {
                 printf("Connect failed: %s\n", $mysqli->connect_error);
                         exit();
