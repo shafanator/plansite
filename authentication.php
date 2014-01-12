@@ -21,7 +21,7 @@ $extra = 'projectlist.php';
 	setcookie("user", $_POST['user'], time()+60*60*24*2);//save user name for 2 days?
 	$user = $_POST['user'];
 	echo $user;
-	global $mysqli = new mysqli("localhost", "mss302", "415", "plansite");
+	global $mysqli = new mysqli("localhost", "****", "***", "***");
 	if ($mysqli->connect_errno) {
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 			exit();
@@ -95,7 +95,7 @@ $extra = 'projectlist.php';
 
 	function createUser($username, $password, $group){
 		$pass  =crypt($password);
-		$mysqli = new mysqli("localhost", "mss302", "415", "plansite");
+		$mysqli = new mysqli("localhost", "***", "***", "****");
         if ($mysqli->connect_errno) {
                 printf("Connect failed: %s\n", $mysqli->connect_error);
                         exit();
