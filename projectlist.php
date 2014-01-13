@@ -15,7 +15,7 @@
 				Hello <?php echo $user; ?>, here are the projects you are working on.
 				<?php 
 
-				$mysqli = new mysqli("localhost", "root", "", "plansite");
+				$mysqli = new mysqli("localhost", "***", "***", "***");
 				if ($mysqli->connect_errno) {
 					printf("Connect failed: %s\n", $mysqli->connect_error);
 					exit();
