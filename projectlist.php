@@ -7,6 +7,7 @@
 	<body>
 		
 		<div id = "wrapper">
+		<div style="right:0px;"><a href="authCAS.php?logout=" >Log Out</a></div>
 			<div id = "top_banner"></div>
 			<div id = "content">
 				<?php $user = $_COOKIE['user'];?>
@@ -14,8 +15,8 @@
 				
 				Hello <?php echo $user; ?>, here are the projects you are working on.
 				<?php 
-
-				$mysqli = new mysqli("localhost", "mss302", "415", "plansite");
+				require_once("password.php");
+				$mysqli = new mysqli("localhost", $username, $password, "plansite");
 				if ($mysqli->connect_errno) {
 					printf("Connect failed: %s\n", $mysqli->connect_error);
 					exit();

@@ -42,7 +42,7 @@
 				</div>
 
 				<div id="rucaslogin">
-				Use Rutgers CAS to Login
+				<a href="authCAS.php">Use Rutgers CAS to Login</a>
 				</div>
 
 				

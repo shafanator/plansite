@@ -18,16 +18,25 @@ $host  = $_SERVER['HTTP_HOST'];
 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $extra = 'projectlist.php';
 	
-	setcookie("user", $_POST['user'], time()+60*60*24*2);//save user name for 2 days?
-	$user = $_POST['user'];
-	echo $user;
-	global $mysqli = new mysqli("localhost", "mss302", "415", "plansite");
+	
+	require_once("password.php");
+
+
+	$mysqli = new mysqli("localhost", $username, $password, "plansite");
 	if ($mysqli->connect_errno) {
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 			exit();
 	}
 	//echo print_r($_POST);
-	if(count($_POST)==2){//check user NOT CREATE USER
+	
+	
+	setcookie("user", $_POST['user'], time()+60*60*24*2);//save user name for 2 days?
+	$user = $_POST['user'];
+	echo $user;
+	$pass = $_POST['password'];
+
+	
+	if(count($_POST)==2 ){//check user NOT CREATE USER
 		if ($result = $mysqli->query("SELECT * FROM users WHERE user =  '".$user."' ")) 
 			{
 				$hashed_password= 'wrong';
@@ -38,9 +47,9 @@ $extra = 'projectlist.php';
 				}
 				$result->close();
 			
-			if ($hashed_password && crypt($_POST['password'], $hashed_password) == $hashed_password) {
+			if ($hashed_password && crypt($pass, $hashed_password) == $hashed_password) {
 				echo "Password verified!";
-				echo $_POST['user'];
+				echo $user;
 				echo "<br>";
 				//echo $_COOKIE["user"];
 				echo "<br><div id = \"googlelogin\">";
@@ -62,7 +71,7 @@ $extra = 'projectlist.php';
 			setcookie("user", "", time()-3600);
 		}
 	}
-	else{
+	else if(count($_POST)>2){
 		createUser($user, $_POST['password'], (int)$_POST['group']);
 	}
 
@@ -95,7 +104,8 @@ $extra = 'projectlist.php';
 
 	function createUser($username, $password, $group){
 		$pass  =crypt($password);
-		$mysqli = new mysqli("localhost", "mss302", "415", "plansite");
+		require_once("password.php");
+		$mysqli = new mysqli("localhost", $username, $password, "plansite");
         if ($mysqli->connect_errno) {
                 printf("Connect failed: %s\n", $mysqli->connect_error);
                         exit();
