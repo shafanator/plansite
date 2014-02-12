@@ -18,11 +18,17 @@ $host  = $_SERVER['HTTP_HOST'];
 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $extra = 'projectlist.php';
 	
+
 	
 	require_once("password.php");
 
 
 	$mysqli = new mysqli("localhost", $username, $password, "plansite");
+
+	setcookie("user", $_POST['user'], time()+60*60*24*2);//save user name for 2 days?
+	$user = $_POST['user'];
+	echo $user;
+
 	if ($mysqli->connect_errno) {
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 			exit();
@@ -104,6 +110,7 @@ $extra = 'projectlist.php';
 
 	function createUser($username, $password, $group){
 		$pass  =crypt($password);
+
 		require_once("password.php");
 		$mysqli = new mysqli("localhost", $username, $password, "plansite");
         if ($mysqli->connect_errno) {

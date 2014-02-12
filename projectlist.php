@@ -15,8 +15,10 @@
 				
 				Hello <?php echo $user; ?>, here are the projects you are working on.
 				<?php 
+
 				require_once("password.php");
 				$mysqli = new mysqli("localhost", $username, $password, "plansite");
+
 				if ($mysqli->connect_errno) {
 					printf("Connect failed: %s\n", $mysqli->connect_error);
 					exit();

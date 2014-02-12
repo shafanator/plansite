@@ -1,6 +1,10 @@
 <?php
 	echo "test";
+<<<<<<< HEAD
 	$mysqli = new mysqli("localhost", "mss302", "415", "plansite");
+=======
+	$mysqli = new mysqli("localhost", "***", "***", "***");
+>>>>>>> a7b31a2abd58db8d6191b192f6ef6dbe0da68002
 	if ($mysqli->connect_errno) {
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 			exit();
