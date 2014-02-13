@@ -88,7 +88,7 @@ $extra = 'projectlist.php';
 	  			Username: <input type="text" name="user"><br>
 	  			Password: <input type="password" name="password"><br>
 	  			Create User:   <select name="group">
-					<?php
+					<?php 
 					    for ($x=1; $x<=6; $x++) {
 					        echo '    <option value="' . $x . '">' . $x . '</option>' . PHP_EOL;
 					    }
@@ -108,17 +108,19 @@ $extra = 'projectlist.php';
 	}
 
 
-	function createUser($username, $password, $group){
-		$pass  =crypt($password);
+	function createUser($newuser, $newpass, $group){
+		$newpassword  =crypt($newpass);
 
-		require_once("password.php");
+		require("password.php");
+		
+
 		$mysqli = new mysqli("localhost", $username, $password, "plansite");
         if ($mysqli->connect_errno) {
                 printf("Connect failed: %s\n", $mysqli->connect_error);
                         exit();
         }
 
-		if (!$mysqli->query("INSERT INTO users(`user`,`password`,`group`) values('$username','$pass', '$group')"))
+		if (!$mysqli->query("INSERT INTO users(`user`,`password`,`group`) values('$newuser','$newpassword', '$group')"))
 		{ 
 			print_r($mysqli->error_list);
 		}

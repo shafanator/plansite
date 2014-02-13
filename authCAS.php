@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Blank Template</title>
+		<title>Authentication</title>
 		<link  href="plansite.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript">
 			
@@ -19,7 +19,7 @@ $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $extra = 'projectlist.php';
 	
 	
-	require_once("password.php");
+	require_once'password.php';
 	
 
 	require_once 'config.php';

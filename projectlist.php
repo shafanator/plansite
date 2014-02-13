@@ -31,7 +31,7 @@
 					while($userrow = $usertab->fetch_object()){
 						
 
-						if ($result = $mysqli->query("SELECT * FROM projects WHERE project =  '$userrow->project' order by PID desc limit 1")) 
+						if ($result = $mysqli->query("SELECT * FROM projects WHERE project =  '$userrow->project' AND user = '$user' order by PID desc limit 1")) 
 						{
 							
 							while($row=$result->fetch_object()){
@@ -39,29 +39,39 @@
 								echo "<br><h1>";
 								
 								echo $row->project;
+								$tothours = 0;
+								if($sum = $mysqli->query("SELECT user, project, SUM(hours) FROM projects WHERE project =  '$userrow->project' AND user = '$user' "))
+								{
+									
+									while($sumrow = $sum->fetch_array()){
+										$tothours = $sumrow['SUM(hours)'];
+									}
+									
+								}
+								
 
 								//header row
-								$table = "</h1><table><tr><td>Project Manager</td><td>Project</td><td>Completed</td><td>To Do</td><td>Hours Last Month</td><td>Hours This Month</td></tr>";
+								$table = "</h1><table><tr><td>User</td><td>Project</td><td>Completed</td><td>To Do</td><td>Hours</td><td>Total Project Hours</td></tr>";
 								//permtable
 								$table .= "<tr>
 								<td>$row->user</td>
 								<td>$row->project</td>
 								<td>$row->done</td>
 								<td>$row->to_do</td>
-								<td>$row->hours_last_month</td>
-								<td>$row->hours</td></tr>";
+								<td>$row->hours</td>
+								<td>$tothours</td></tr>";
 
 								//temptable
-								$temptab = $mysqli->query("SELECT * FROM temp_projects WHERE project =  '$userrow->project' ");
+								$temptab = $mysqli->query("SELECT * FROM temp_projects WHERE project =  '$userrow->project' AND user = '$user' ");
 								
 								while($temprow = $temptab -> fetch_object()){
 								$table .= "<tr><form action = 'submit.php' method='POST' id = '$id'>
-								<td><textarea form= '$id' name = 'user' >$temprow->user</textarea></td>
+								<td><input type = 'hidden' name = 'user' value = '$temprow->user'>$temprow->user</td>
 								<td><input type = 'hidden' name = 'project' value = '$temprow->project'>$temprow->project</td>
 								<td><textarea form= '$id' name = 'done'>$temprow->done</textarea></td>
 								<td><textarea form= '$id' name = 'to_do'>$temprow->to_do</textarea></td>
-								<td><textarea form= '$id' name = 'hours_last_month'>$temprow->hours_last_month</textarea></td>
 								<td><textarea form= '$id' name = 'hours'>$temprow->hours</textarea></td>
+								<td></td>
 								</tr></table><input form = '$id' type='submit' name = 'button' value='Submit to Temp'><input form = '$id' name = 'button' type='submit' value='Add to Log'></form>";
 								}
 								echo $table;

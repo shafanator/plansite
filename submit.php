@@ -1,17 +1,15 @@
 <?php
-	echo "test";
-<<<<<<< HEAD
-	$mysqli = new mysqli("localhost", "mss302", "415", "plansite");
-=======
-	$mysqli = new mysqli("localhost", "***", "***", "***");
->>>>>>> a7b31a2abd58db8d6191b192f6ef6dbe0da68002
+
+	require_once("password.php");
+	$mysqli = new mysqli("localhost", $username, $password, "plansite");
+
 	if ($mysqli->connect_errno) {
 		printf("Connect failed: %s\n", $mysqli->connect_error);
 			exit();
 	}
 	print_r($_POST);
 	if ($_POST['button'] == 'Submit to Temp') {
-	    $sql="UPDATE temp_projects SET user =  '$_POST[user]',  done =  '$_POST[done]', to_do = '$_POST[to_do]', hours_last_month = '$_POST[hours_last_month]', hours = '$_POST[hours]' where project= '$_POST[project]'";
+	    $sql="UPDATE temp_projects SET user =  '$_POST[user]',  done =  '$_POST[done]', to_do = '$_POST[to_do]', hours = '$_POST[hours]' where project= '$_POST[project]'";
 		if (!mysqli_query($mysqli,$sql))
 	  	{
 	  		die('Error: ' . mysqli_error($mysqli));
@@ -19,14 +17,14 @@
 		echo "1 record added";
 
 	} else if ($_POST['button'] == 'Add to Log') {
-	    $sql="INSERT INTO projects(`user`, `done`, `to_do`, hours_last_month, `hours`, `project`) values('$_POST[user]', 
-	    	'$_POST[done]','$_POST[to_do]', '$_POST[hours_last_month]', '$_POST[hours]', '$_POST[project]')";
+	    $sql="INSERT INTO projects(`user`, `done`, `to_do`, `hours`, `project`) values('$_POST[user]', 
+	    	'$_POST[done]','$_POST[to_do]', '$_POST[hours]', '$_POST[project]')";
 	    if (!mysqli_query($mysqli,$sql))
 	  	{
 	  		die('Error: ' . mysqli_error($mysqli));
 	  	}
 		echo "1 record added";
-		$sql="UPDATE temp_projects SET user =  '',  done =  '', to_do = '', hours_last_month = '', hours = '' where project= '$_POST[project]'";
+		$sql="UPDATE temp_projects SET user =  '$_POST[user]',  done =  '', to_do = '', hours = '' where project= '$_POST[project]'";
 		if (!mysqli_query($mysqli,$sql))
 	  	{
 	  		die('Error: ' . mysqli_error($mysqli));
