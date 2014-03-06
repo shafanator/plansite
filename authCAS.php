@@ -44,13 +44,13 @@ $extra = 'projectlist.php';
 }
 phpCAS::forceAuthentication();
 
-	if(phpCAS::isAuthenticated()){
+	if(!phpCAS::isAuthenticated()){
 		$user = phpCAS::getUser();
-		$pass = "cas";
+		
 		echo $user;
 		setcookie("user", $user, time()+60*60*24*2);
 		//check user NOT CREATE USER
-		if ($result = $mysqli->query("SELECT * FROM users WHERE user =  '".$user."' ")) 
+		if (!$result = $mysqli->query("SELECT * FROM users WHERE user =  '".$user."' ")) 
 			{
 				echo "test1";
 				$hashed_password= 'wrong';
@@ -61,7 +61,7 @@ phpCAS::forceAuthentication();
 				}
 				$result->close();
 			
-			if ($hashed_password && crypt($pass, $hashed_password) == $hashed_password) {
+			
 				echo "Password verified!";
 				echo $user;
 				echo "<br>";
@@ -69,22 +69,31 @@ phpCAS::forceAuthentication();
 				echo "<br><div id = \"googlelogin\">";
 				echo "<a href = 'http://$host$uri/$extra'> Click here to view current projects  </a></div>";
 				setcookie("group", $group, time()+60*60*24*2);
-			}
-			else
-			{
-				echo "Wrong Password or username please try again";
-				echo "<br>";
-				echo "<a href = 'http://$host$uri'> click here to go </a>";
-			}
+			
+			
 		}
 		else
 		{
-			echo "Wrong password or username please try again";
-			echo "<br>";
-			echo "<a href = 'http://$host$uri'> click here to go </a>";
+			?>
+			You do not a valid username within the database. Would you like to create one? 
+			<br> 
+			<form action = "authentication.php" method="POST" style="" >
+	  			Username: <input type="text" name="user" value = "<?echo $user ?>" >
+	  			<br>
+	  			Password: <input type="password" name="password"><br>
+	  			<br>
+	  			<input type="submit" value="Submit">
+				</form>
+			Please enter a password:
+			<input type="password" name="password"><br>
+
+			<br>
+			<a href = 'http://$host$uri'> click here to go back </a>
+			<?
 			setcookie("user", "", time()-3600);
 		}
 	}
+
 	
 	?>
 			</div>

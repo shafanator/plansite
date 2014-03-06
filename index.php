@@ -34,35 +34,40 @@
 		<div id = "wrapper">
 			<div id = "top_banner"></div>
 			<div id = "content">
+			
 				This is a test for Prof. Kantor
-				<p>View our notes <a href="KantorNotes.pdf">here</a>.</p>
+				<p>
+					View our notes <a href="KantorNotes.pdf">here</a>.
+				</p>
+
+
 				//login table
 				<div id="googlelogin">
-				Use Google to Login
+					Use Google to Login
 				</div>
 
 				<div id="rucaslogin">
-				<a href="authCAS.php">Use Rutgers CAS to Login</a>
+					<a href="authCAS.php">Use Rutgers CAS to Login</a>
 				</div>
 
 				
 				<form action = "authentication.php" method="POST" style="" >
-	  			Username: <input type="text" name="user"><br>
-	  			Password: <input type="password" name="password"><br>
-	  			<!--Create User: <input type="checkbox" name="cu"><br>-->
-	  			<input type="submit" value="Submit">
+	  				Username: <input type="text" name="user"><br>
+	  				Password: <input type="password" name="password"><br>
+	  				<!--Create User: <input type="checkbox" name="cu"><br>-->
+	  				<input type="submit" value="Submit">
 				</form>
 				
 
 				<a href="#" onclick="showTimeSheet('time');">Show Michael's Task Time Sheet</a>
 				<div id="time" style="display:none" >
-				<u>Task Time Sheet</u>
-				<br>Research 1 hour
-				<br>Layouts/Page Creation: 2.5hours
-				<br>Authentication 2.5
-				<br>Database 3
-				<br>Tables 2
-				<br>Other 3
+					<u>Task Time Sheet</u>
+					<br>Research 1 hour
+					<br>Layouts/Page Creation: 2.5hours
+					<br>Authentication 2.5
+					<br>Database 3
+					<br>Tables 2
+					<br>Other 3
 				</div>
 
 

@@ -20,12 +20,7 @@
 				?>
 				This is the Admin Page
 				<br>
-				<br>To do:
-				<br>User dropdown, textbox
-				<br>
-				<br>1. Create entry in project list
-				<br>2. Create project in projects
-				<br>3. Create project in temp_projects
+				
 
 				<br>
 				<br>

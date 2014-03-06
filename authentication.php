@@ -84,6 +84,7 @@ $extra = 'projectlist.php';
 	if(isset($group) && $group == 6)//user creator
 	{//create USER
 		?>
+		<div id = 'rucaslogin' style= "margin-left:600px"><a href = 'admin.php'>Admin</a></div>
 				<form action = "authentication.php" method="POST" style="" >
 	  			Username: <input type="text" name="user"><br>
 	  			Password: <input type="password" name="password"><br>
@@ -96,6 +97,9 @@ $extra = 'projectlist.php';
   				</select><br>
 	  			<input type="submit" value="Submit">
 				</form>
+
+
+				
 
 
 
@@ -128,6 +132,7 @@ $extra = 'projectlist.php';
 		{
 			echo "User/Password created";
 		}
+
 
 	}
 

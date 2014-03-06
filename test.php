@@ -47,6 +47,7 @@ phpCAS::forceAuthentication();
 if (isset($_REQUEST['logout'])) {
         phpCAS::logout();
 }
+$uname = phpCAS::getUser();
 
 //echo phpCAS::getUser();
 
@@ -58,12 +59,15 @@ if (isset($_REQUEST['logout'])) {
   </head>
   <body>
     <h1>Successfull Authentication!</h1>
-    <p>the user's login is <b><?php echo phpCAS::getUser(); ?></b>.</p>
+    <p>the user's login is <b><?php echo $uname; ?></b>.</p>
     <p>Has attributes: <b> <?php 
     if(phpCAS::hasAttributes())
       echo "TRUE";
     else
       echo "FALSE";
+
+   
+    echo "<a href='ldappage.php?uname=$uname'>test</a>"
 
     ?></b>.</p>
    
